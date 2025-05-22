@@ -1,0 +1,5 @@
+# Ignored files
+
+# Ignored folders
+.venv/
+/node_modules/
