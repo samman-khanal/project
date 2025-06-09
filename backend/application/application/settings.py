@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     # Third-party apps
     'authentication',
     'rest_framework',
+    'django-allauth',
 ]
 
 MIDDLEWARE = [
