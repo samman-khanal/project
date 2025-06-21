@@ -21,7 +21,7 @@ const Register = () => {
 
     // Email validation
     if (!email) {
-      toast.warn("Email is required");
+      toast.warn("Email is required.");
       return;
     } 
     else if (!/\S+@\S+\.\S+/.test(email)) {
@@ -35,8 +35,8 @@ const Register = () => {
       toast.warn("Password is required.");
       return;
     } 
-    else if (password.length < 6) {
-      toast.error("Password must be at least 6 characters long.");
+    else if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
       setPassword("");
       return;
     }
@@ -119,7 +119,7 @@ const Register = () => {
           <button type="submit">
             Register
           </button>
-          <ToastContainer position="top-right" autoClose={3000}></ToastContainer>
+          <ToastContainer position="top-right" autoClose={5000}></ToastContainer>
 
           <p>
             Already have an account? <Link to="/login">Login</Link>

@@ -1,6 +1,7 @@
 import { react, useState } from "react";
 import { Link } from "react-router";
 import { ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
@@ -13,39 +14,34 @@ const Login = () => {
 
     // Email validation
     if (!email) {
-      alert("Email is required");
+      toast.warn("Email is required.");
       return;
     } 
     else if (!/\S+@\S+\.\S+/.test(email)) {
-      alert("Email is invalid.");
+      toast.error("Email is invalid.");
       setEmail("");
       return;
     }
 
     // Password validation
     if (!password) {
-      alert("Password is required.");
+      toast.warn("Password is required.");
       return;
     } 
-    else if (password.length < 6) {
-      alert("Password must be at least 6 characters long.");
+    else if (password.length < 8) {
+      toast.error("Password must be at least 8 characters long.");
       setPassword("");
       return;
     }
     
     // If all validations pass, proceed with login logic
     console.log("User logged in: ", { email, password });
+    toast.success("Login successful.");
 
     // Clearing the form fields after successful submission.
     setEmail("");
     setPassword("");
   };
-
-  // Function to reset the form fields after submission
-  const reloadForm = () => {
-    setEmail("");
-    setPassword("");
-  }
 
   return (
     <>
@@ -60,7 +56,6 @@ const Login = () => {
             placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
           />
 
           <label htmlFor="password" className="password" id="password">
@@ -71,13 +66,12 @@ const Login = () => {
             placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            required
           />
 
-          <button type="submit" 
-          onClick={reloadForm}>
+          <button type="submit">
             Login
           </button>
+          <ToastContainer position="top-right" autoClose={5000}></ToastContainer>
           <p>
             Don't have an account? <Link to="/">Register</Link>
           </p>
